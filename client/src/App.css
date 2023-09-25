@@ -1,0 +1,37 @@
+/* * {
+  background-color: #282c34;
+  color: white;
+} */
+
+/* SHADY GREEN #075E54
+GREEN #128C7E
+LIGHT GREEN #25D366
+ALOVERA GREEN #DCF8C6
+BLUE #34B7F1
+LIGHT GRAY #ECE5DD */
+
+/* chat profile user: #2a2f32
+Search input: 	#323739
+Search text: #4b4f51
+Search Icon: #606567
+Search background + chats background: #131c21
+chats background on hover: 	#323739
+My chat bubble background: #054740
+Other user bubble background: #262d31 */
+
+.sideBar {
+  flex: 1 0 40%;
+}
+
+.content {
+  flex: 1 0 60%;
+  background-color: aquamarine;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+body {
+  background-color: "#090d10";
+}
