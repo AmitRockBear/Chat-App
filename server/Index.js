@@ -10,26 +10,28 @@ const auth = require("./routes/Auth_r")
 const chat = require("./routes/Chat_r")
 const app = express()
 
-app.use(express.json())
-
-// Initializing env vars
 dotenv.config()
 
-// Session
+app.use(express.json())
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+)
+
 app.use(
   cookieSession({
-    // milliseconds of a day
     maxAge: 24 * 60 * 60 * 1000,
     keys: [process.env.SESSION_SECRET],
   })
 )
 
-// Initializing passport
 app.use(passport.initialize())
 app.use(passport.session())
 passportSetup(passport)
 
-// Initializing mongodb
 const uri = process.env.MONGO_URI
 mongoose
   .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
