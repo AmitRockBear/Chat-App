@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "19px",
     marginBottom: "19px",
     height: "100%",
-    // height: "calc(100% - 38px)",
   },
   sidebar: {
     flexGrow: 1,
@@ -78,7 +77,7 @@ function App() {
             </div>
           </Context.Provider>
         ) : (
-          <a href={process.env.REACT_APP_SERVER_URL}>
+          <a href={`${process.env.REACT_APP_SERVER_URL}/auth/google`}>
             <GoogleButton className={classes.center} />
           </a>
         )}
