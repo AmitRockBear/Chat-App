@@ -1,6 +1,6 @@
-# Chat-App
+# WhatsApp-Web Clone
 
-Fullstack chat-app I made in 2020.
+Fullstack WhatsApp-Web Clone I made in 2020.
 
 The backend is written in JS using nodeJS and the following technologies:
 

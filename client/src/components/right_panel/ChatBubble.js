@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { Context } from "../../App";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useContext } from "react"
+import { Context } from "../../App"
+import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles((theme) => ({
   msg: {
@@ -95,18 +95,17 @@ const useStyles = makeStyles((theme) => ({
       transform: "scaleX(-1)",
     },
   },
-}));
+}))
 
 export default function ChatProfile(props) {
-  const classes = useStyles();
-  const { message } = props;
-  const context = useContext(Context);
-  const { user } = context.state;
-  const timestamp = message.createdAt.split(".")[0].replace("T", " ");
+  const classes = useStyles()
+  const { message } = props
+  const context = useContext(Context)
+  const { user } = context.state
+  const timestamp = message.createdAt.split(".")[0].replace("T", " ")
 
   const bubbleClass =
-    user._id === message.user_id ? classes.myBubble : classes.otherBubble;
-  console.log(bubbleClass);
+    user._id === message.user_id ? classes.myBubble : classes.otherBubble
   return (
     <>
       <div className={classes.msg}>
@@ -121,5 +120,5 @@ export default function ChatProfile(props) {
         </div>
       </div>{" "}
     </>
-  );
+  )
 }

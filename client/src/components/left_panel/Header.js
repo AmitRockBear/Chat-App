@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Avatar from "@material-ui/core/Avatar";
-import photo from "../../static/excalibear.png";
-import Exit from "@material-ui/icons/ExitToApp";
-import ChatIcon from "@material-ui/icons/Chat";
-import axios from "axios";
-import { Context } from "../../App";
-import { LOGOUT, UPDATE_CONTACTS, CHANGE_ISCHATS } from "../../Actions";
+import React, { useContext } from "react"
+import { makeStyles } from "@material-ui/core/styles"
+import Avatar from "@material-ui/core/Avatar"
+import photo from "../../static/excalibear.png"
+import Exit from "@material-ui/icons/ExitToApp"
+import ChatIcon from "@material-ui/icons/Chat"
+import axios from "axios"
+import { Context } from "../../App"
+import { LOGOUT, UPDATE_CONTACTS, CHANGE_ISCHATS } from "../../Actions"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,30 +38,28 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     cursor: "pointer",
   },
-}));
+}))
 
 export default function Header() {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const context = useContext(Context);
+  const context = useContext(Context)
 
   const logoutButtonClick = () => {
     axios.get("/auth/logout").then((res) => {
-      console.log(res.data);
-      context.dispatch({ type: LOGOUT });
-    });
-  };
+      context.dispatch({ type: LOGOUT })
+    })
+  }
 
   const newChatClick = () => {
     axios.get(`/user/allusers/${context.state.user._id}`).then((res) => {
-      console.log(res.data);
-      context.dispatch({ type: UPDATE_CONTACTS, payload: res.data });
+      context.dispatch({ type: UPDATE_CONTACTS, payload: res.data })
       context.dispatch({
         type: CHANGE_ISCHATS,
         payload: !context.state.isChats,
-      });
-    });
-  };
+      })
+    })
+  }
 
   return (
     <div className={classes.root}>
@@ -81,5 +79,5 @@ export default function Header() {
         />
       </div>
     </div>
-  );
+  )
 }

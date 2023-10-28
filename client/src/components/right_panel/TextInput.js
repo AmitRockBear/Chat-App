@@ -1,13 +1,13 @@
-import React, { useState, useContext } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Avatar from "@material-ui/core/Avatar";
-import photo from "../../static/excalibear.png";
-import { Typography } from "@material-ui/core";
-import InputBase from "@material-ui/core/InputBase";
-import Send from "@material-ui/icons/Send";
-import { Context } from "../../App";
-import axios from "axios";
-import { UPDATE_CHAT } from "../../Actions";
+import React, { useState, useContext } from "react"
+import { makeStyles } from "@material-ui/core/styles"
+import Avatar from "@material-ui/core/Avatar"
+import photo from "../../static/excalibear.png"
+import { Typography } from "@material-ui/core"
+import InputBase from "@material-ui/core/InputBase"
+import Send from "@material-ui/icons/Send"
+import { Context } from "../../App"
+import axios from "axios"
+import { UPDATE_CHAT } from "../../Actions"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,32 +38,30 @@ const useStyles = makeStyles((theme) => ({
     flexBasis: "8%",
     alignSelf: "center",
   },
-}));
+}))
 
 export default function TextInput() {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const context = useContext(Context);
-  const { rightPanelChat, user } = context.state;
-  const [msgInput, setMsgInput] = useState("");
+  const context = useContext(Context)
+  const { rightPanelChat, user } = context.state
+  const [msgInput, setMsgInput] = useState("")
 
   const onChangeInput = (e) => {
-    console.log(msgInput);
-    setMsgInput(e.target.value);
-  };
-  console.log(rightPanelChat);
+    setMsgInput(e.target.value)
+  }
 
   const onSubmitMessage = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (msgInput.length > 0) {
       let res = await axios.post(
         `/chat/${user._id}/${rightPanelChat._id}/appendMsg`,
         { message: msgInput }
-      );
-      setMsgInput("");
-      context.dispatch({ type: UPDATE_CHAT, payload: { chat: res.data } });
+      )
+      setMsgInput("")
+      context.dispatch({ type: UPDATE_CHAT, payload: { chat: res.data } })
     }
-  };
+  }
 
   return (
     <form onSubmit={onSubmitMessage} className={classes.root}>
@@ -82,5 +80,5 @@ export default function TextInput() {
         onClick={onSubmitMessage}
       />
     </form>
-  );
+  )
 }
