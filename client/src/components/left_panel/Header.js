@@ -46,19 +46,23 @@ export default function Header() {
   const context = useContext(Context)
 
   const logoutButtonClick = () => {
-    axios.get("/auth/logout").then((res) => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/auth/logout`).then((res) => {
       context.dispatch({ type: LOGOUT })
     })
   }
 
   const newChatClick = () => {
-    axios.get(`/user/allusers/${context.state.user._id}`).then((res) => {
-      context.dispatch({ type: UPDATE_CONTACTS, payload: res.data })
-      context.dispatch({
-        type: CHANGE_ISCHATS,
-        payload: !context.state.isChats,
+    axios
+      .get(
+        `${process.env.REACT_APP_SERVER_URL}/user/allusers/${context.state.user._id}`
+      )
+      .then((res) => {
+        context.dispatch({ type: UPDATE_CONTACTS, payload: res.data })
+        context.dispatch({
+          type: CHANGE_ISCHATS,
+          payload: !context.state.isChats,
+        })
       })
-    })
   }
 
   return (

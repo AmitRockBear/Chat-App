@@ -49,12 +49,16 @@ export default function ChatsList() {
   }
 
   const getUserById = async (user_id) => {
-    let res = await axios.get(`/user/${user_id}`)
+    let res = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/user/${user_id}`
+    )
     return res.data
   }
 
   const getChatById = async (chat_id) => {
-    let res = await axios.get(`/chat/${chat_id}`)
+    let res = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/chat/${chat_id}`
+    )
     return res.data
   }
 

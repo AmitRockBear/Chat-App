@@ -55,7 +55,7 @@ export default function TextInput() {
     e.preventDefault()
     if (msgInput.length > 0) {
       let res = await axios.post(
-        `/chat/${user._id}/${rightPanelChat._id}/appendMsg`,
+        `${process.env.REACT_APP_SERVER_URL}/chat/${user._id}/${rightPanelChat._id}/appendMsg`,
         { message: msgInput }
       )
       setMsgInput("")

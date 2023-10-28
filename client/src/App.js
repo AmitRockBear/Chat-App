@@ -1,13 +1,13 @@
-import { Container } from "@material-ui/core";
-import "./App.css";
-import SideBar from "./components/left_panel/SideBar";
-import RightPanel from "./components/right_panel/RightPanel";
-import { makeStyles } from "@material-ui/core/styles";
-import React, { useReducer, useEffect } from "react";
-import axios from "axios";
-import GoogleButton from "react-google-button";
-import reducer from "./Reducer";
-import { USER_LOGIN } from "./Actions";
+import { Container } from "@material-ui/core"
+import "./App.css"
+import SideBar from "./components/left_panel/SideBar"
+import RightPanel from "./components/right_panel/RightPanel"
+import { makeStyles } from "@material-ui/core/styles"
+import React, { useReducer, useEffect } from "react"
+import axios from "axios"
+import GoogleButton from "react-google-button"
+import reducer from "./Reducer"
+import { USER_LOGIN } from "./Actions"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,12 +30,12 @@ const useStyles = makeStyles((theme) => ({
     left: "50%",
     transform: "translate(-50%, -50%)",
   },
-}));
+}))
 
-export const Context = React.createContext(null);
+export const Context = React.createContext(null)
 
 function App() {
-  const classes = useStyles();
+  const classes = useStyles()
 
   const [state, dispatch] = useReducer(reducer, {
     user: null,
@@ -49,19 +49,21 @@ function App() {
       messages: [],
     },
     searchPhrase: "",
-  });
+  })
 
   const getLoggedUserData = () => {
-    axios.get("/auth/logged/user").then((res) => {
-      dispatch({ type: USER_LOGIN, payload: res.data.user });
-    });
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/auth/logged/user`)
+      .then((res) => {
+        dispatch({ type: USER_LOGIN, payload: res.data.user })
+      })
 
-    setTimeout(getLoggedUserData, 10000);
-  };
+    setTimeout(getLoggedUserData, 10000)
+  }
 
   useEffect(() => {
-    getLoggedUserData();
-  }, []);
+    getLoggedUserData()
+  }, [])
 
   return (
     <Container maxWidth="lg">
@@ -76,13 +78,13 @@ function App() {
             </div>
           </Context.Provider>
         ) : (
-          <a href="http://localhost:4000/auth/google">
+          <a href={process.env.REACT_APP_SERVER_URL}>
             <GoogleButton className={classes.center} />
           </a>
         )}
       </div>
     </Container>
-  );
+  )
 }
 
-export default App;
+export default App
