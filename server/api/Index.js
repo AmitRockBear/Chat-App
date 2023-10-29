@@ -43,4 +43,6 @@ app.use("/chat", chat)
 //   console.log(`Listenning to port ${process.env.PORT}`)
 // )
 
+app.get("/", (req, res) => res.send("Alive"))
+
 module.exports = app
