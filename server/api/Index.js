@@ -39,8 +39,8 @@ app.use("/auth", auth)
 app.use("/user", user)
 app.use("/chat", chat)
 
-app.listen(process.env.PORT, () =>
-  console.log(`Listenning to port ${process.env.PORT}`)
-)
+// app.listen(process.env.PORT, () =>
+//   console.log(`Listenning to port ${process.env.PORT}`)
+// )
 
 module.exports = app
